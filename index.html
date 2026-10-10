@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Polku - Retkeilyä Nuuksiossa</title>
+  
+  <!--Bootstrap 5 CSS-->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+  <style>
+    body {
+      background-color: #f4f7f6;
+      color: #1b2523;
+    }
+    .navbar {
+      background-color: #1f3a34;
+    }
+    .hero-alue {
+      background-color: #1f3a34;
+      color: #fff;
+      padding: 5rem 0;
+    }
+    .puolukka-nappi {
+      background-color: #a3243b;
+      border-color: #a3243b;
+      color: #fff;
+    }
+    .puolukka-nappi:hover {
+      background-color: #861d31;
+      border-color: #861d31;
+      color: #fff;
+    }
+    .reitti-kortti {
+      border-left: 5px solid #5b8fa8;
+    }
+    .saa-laatikko {
+      background: #fff;
+      border-radius: 0.5rem;
+      border: 1px solid #cfdad6;
+      padding: 1.5rem;
+    }
+    footer {
+      background-color: #1f3a34;
+      color: #d9e5e1;
+    }
+  </style>
+</head>
+<body>
+
+<!--Nav-->
+<nav class="navbar navbar-expand-md navbar-dark sticky-top">
+  <div class="container">
+    <a class="navbar-brand" href="#">Polku</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#valikko" aria-controls="valikko" aria-expanded="false" aria-label="Avaa valikko">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="valikko">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="#reitit">Reitit</a></li>
+        <li class="nav-item"><a class="nav-link" href="#saa">Sää</a></li>
+        <li class="nav-item"><a class="nav-link" href="#varusteet">Varusteet</a></li>
+        <li class="nav-item"><a class="nav-link" href="#yhteys">Yhteys</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!--Hero-->
+<header class="hero-alue">
+  <div class="container">
+    <h1 class="display-4 fw-bold">Ulos metsään, repun kanssa.</h1>
+    <p class="lead col-md-7 mt-3">Polku on harrastesivusto päiväretkistä Nuuksion kansallispuistossa: reitit, varusteet ja sää yhdessä paikassa.</p>
+    <a href="#reitit" class="btn puolukka-nappi btn-lg mt-2">Katso reitit</a>
+  </div>
+</header>
+
+<main>
+  <!--Reitit-->
+  <section id="reitit" class="container py-5">
+    <h2 class="mb-4">Suosikkireitit</h2>
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="card reitti-kortti h-100 shadow-sm">
+          <div class="card-body">
+            <h3 class="h5">Haukkalammen kierros</h3>
+            <p class="mb-1 text-muted">Pituus 5 km · helppo</p>
+            <p>Sopii ensikertalaisille. Lammen rannalla on hyvä paikka eväille.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card reitti-kortti h-100 shadow-sm">
+          <div class="card-body">
+            <h3 class="h5">Haukkalampi-Korpinkierros</h3>
+            <p class="mb-1 text-muted">Pituus 12 km · keskivaikea</p>
+            <p>Kuljet kalliometsien ja kirkasvetisten lampien halki. Varaa koko päivä.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card reitti-kortti h-100 shadow-sm">
+          <div class="card-body">
+            <h3 class="h5">Kattila-Pitkäjärvi</h3>
+            <p class="mb-1 text-muted">Pituus 8 km · helppo</p>
+            <p>Maisemareitti, jolla on useita nuotiopaikkoja ja laavuja.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!--Sää (Ulkoinen JSON)-->
+  <section id="saa" class="bg-white border-top border-bottom py-5">
+    <div class="container">
+      <h2 class="mb-1">Sää Nuuksiossa nyt</h2>
+      <p class="text-muted mb-4">Tiedot haetaan JSON-muodossa Open-Meteo-palvelusta.</p>
+      <div id="saa-sisalto" class="row g-4">
+        <div class="col-12">Haetaan säätietoja…</div>
+      </div>
+    </div>
+  </section>
+
+  <!--Varusteet-->
+  <section id="varusteet" class="container py-5">
+    <h2 class="mb-4">Mitä repussa kannattaa olla?</h2>
+    <div class="accordion" id="varustelista">
+      <div class="accordion-item">
+        <h3 class="accordion-header">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#vaatteet">Vaatteet</button>
+        </h3>
+        <div id="vaatteet" class="accordion-collapse collapse show" data-bs-parent="#varustelista">
+          <div class="accordion-body">Kerrospukeutuminen toimii. Ota mukaan tuulitakki ja kunnolliset kengät.</div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h3 class="accordion-header">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#ruoka">Ruoka ja juoma</button>
+        </h3>
+        <div id="ruoka" class="accordion-collapse collapse" data-bs-parent="#varustelista">
+          <div class="accordion-body">Reilusti vettä, lämmin juoma termospullossa ja eväät. Makkara ja tikut nuotiota varten.</div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h3 class="accordion-header">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#turvallisuus">Turvallisuus</button>
+        </h3>
+        <div id="turvallisuus" class="accordion-collapse collapse" data-bs-parent="#varustelista">
+          <div class="accordion-body">Ensiapupakkaus, ladattu puhelin ja kartta. Kerro aina jollekkin, mihin olet menossa.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!--Yhteys-->
+  <section id="yhteys" class="container pb-5">
+    <h2 class="mb-3">Yhteys</h2>
+    <p>Kysyttävää reiteistä? Lähetä viesti: <a href="mailto:etunimi.sukunimi@example.com">etunimi.sukunimi@example.com</a></p>
+  </section>
+</main>
+
+<!--Alatunniste-->
+<footer class="py-4 text-center">
+  <div class="container">OT5^^</div>
+</footer>
+
+<!--Bootstrap JS-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<!--Skripti sään hakemiseen JSON-muodossa-->
+<script>
+  const rajapintaOsoite = 'https://api.open-meteo.com/v1/forecast?latitude=60.31&longitude=24.50&current=temperature_2m,wind_speed_10m';
+
+  async function haeSaatiedot() {
+    const kohdealue = document.getElementById('saa-sisalto');
+    try {
+      const vastaus = await fetch(rajapintaOsoite);
+      if (!vastaus.ok) throw new Error('Virhe haussa');
+      const saatiedot = await vastaus.json();
+      const nykyinen = saatiedot.current;
+
+      kohdealue.innerHTML = `
+        <div class="col-md-6">
+          <div class="saa-laatikko">
+            <h3>Nykyinen lämpötila</h3>
+            <div class="display-4 fw-bold text-success my-2">${nykyinen.temperature_2m} °C</div>
+            <p class="text-muted mb-0">Tuulen nopeus: ${nykyinen.wind_speed_10m} km/h</p>
+          </div>
+        </div>`;
+    } catch (virhe) {
+      kohdealue.innerHTML = `<div class="col-12"><div class="alert alert-warning">Säätietoja ei saatu haettua.</div></div>`;
+    }
+  }
+  haeSaatiedot();
+</script>
+</body>
+</html>
